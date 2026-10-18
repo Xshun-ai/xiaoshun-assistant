@@ -328,8 +328,7 @@ class XgAuthInterceptor extends Interceptor {
       handler.next(options);
       return;
     }
-    final appName =
-        options.extra['appName'] as String? ?? XgModule.evaluation.appName;
+    final appName = options.extra['appName'] as String? ?? 'xshdapp';
     final commonHeaders = SsoService.getCommonHeaders(appName);
     options.headers.addAll(commonHeaders);
     if (!options.headers.containsKey('Referer')) {
@@ -401,11 +400,11 @@ class XgAuthInterceptor extends Interceptor {
     required bool forceRefresh,
   }) async {
     final module = XgModule(
-      options.extra['appName'] as String? ?? XgModule.evaluation.appName,
-      options.extra['appId'] as String? ?? XgModule.evaluation.appId,
+      options.extra['appName'] as String? ?? 'xshdapp',
+      options.extra['appId'] as String? ?? '4805589443814173',
     );
     final requestKey =
-        '${options.method}:${options.path}:${options.extra['appName'] ?? XgModule.evaluation.appName}';
+        '${options.method}:${options.path}:${options.extra['appName'] ?? 'xshdapp'}';
     final stopwatch = Stopwatch()..start();
 
     await LogService().logXgTrace(

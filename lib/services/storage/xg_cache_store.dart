@@ -4,16 +4,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/xg_module_session_snapshot.dart';
 
-typedef XgScopedStringSetter =
-    Future<void> Function(
-      SharedPreferences prefs,
-      String baseKey,
-      String value,
-    );
-typedef XgScopedStringGetter =
-    Future<String?> Function(SharedPreferences prefs, String baseKey);
-typedef XgScopedPrefixRemover =
-    Future<void> Function(SharedPreferences prefs, String prefix);
+typedef XgScopedStringSetter = Future<void> Function(
+  SharedPreferences prefs,
+  String baseKey,
+  String value,
+);
+typedef XgScopedStringGetter = Future<String?> Function(
+  SharedPreferences prefs,
+  String baseKey,
+);
+typedef XgScopedPrefixRemover = Future<void> Function(
+  SharedPreferences prefs,
+  String prefix,
+);
 
 class XgCacheStore {
   final XgScopedStringSetter _setScopedString;
@@ -24,6 +27,7 @@ class XgCacheStore {
   final String _xgSessionRoleKey;
   final String _xgSessionGroupRefreshedAtKey;
   final String _xgModuleSnapshotKey;
+  final String _xgActivityListCacheKey;
   final String _xgEvaluationOverviewCacheKey;
 
   XgCacheStore({
@@ -35,6 +39,7 @@ class XgCacheStore {
     required String xgSessionRoleKey,
     required String xgSessionGroupRefreshedAtKey,
     required String xgModuleSnapshotKey,
+    required String xgActivityListCacheKey,
     required String xgEvaluationOverviewCacheKey,
   }) : _setScopedString = setScopedString,
        _getScopedString = getScopedString,
@@ -44,6 +49,7 @@ class XgCacheStore {
        _xgSessionRoleKey = xgSessionRoleKey,
        _xgSessionGroupRefreshedAtKey = xgSessionGroupRefreshedAtKey,
        _xgModuleSnapshotKey = xgModuleSnapshotKey,
+       _xgActivityListCacheKey = xgActivityListCacheKey,
        _xgEvaluationOverviewCacheKey = xgEvaluationOverviewCacheKey;
 
   Future<void> saveXgSessionUser(String username) async {
@@ -108,6 +114,21 @@ class XgCacheStore {
   Future<void> clearXgModuleSnapshot(String appName) async {
     final prefs = await SharedPreferences.getInstance();
     await _removeKeysWithPrefix(prefs, _buildModuleSnapshotKey(appName));
+  }
+
+  Future<void> saveXgActivityListCache(String json) async {
+    final prefs = await SharedPreferences.getInstance();
+    await _setScopedString(prefs, _xgActivityListCacheKey, json);
+  }
+
+  Future<String?> getXgActivityListCache() async {
+    final prefs = await SharedPreferences.getInstance();
+    return _getScopedString(prefs, _xgActivityListCacheKey);
+  }
+
+  Future<void> clearXgActivityListCache() async {
+    final prefs = await SharedPreferences.getInstance();
+    await _removeKeysWithPrefix(prefs, _xgActivityListCacheKey);
   }
 
   Future<void> saveXgEvaluationOverviewCache(String json) async {

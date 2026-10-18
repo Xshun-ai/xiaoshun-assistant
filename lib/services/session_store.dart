@@ -14,6 +14,7 @@ class SessionStore extends AuthStore {
   static const _kXgSessionRole = 'xg_session_role';
   static const _kXgSessionGroupRefreshedAt = 'xg_session_group_refreshed_at';
   static const _kXgModuleSnapshot = 'xg_module_snapshot';
+  static const _kXgActivityListCache = 'xg_activity_list_cache';
   static const _kXgEvaluationOverviewCache = 'xg_evaluation_overview_cache';
   static const _kXgTraceCurrentId = 'xg_trace_current_id';
   static const _kXgTraceStartedAt = 'xg_trace_started_at';
@@ -38,6 +39,7 @@ class SessionStore extends AuthStore {
     xgSessionRoleKey: _kXgSessionRole,
     xgSessionGroupRefreshedAtKey: _kXgSessionGroupRefreshedAt,
     xgModuleSnapshotKey: _kXgModuleSnapshot,
+    xgActivityListCacheKey: _kXgActivityListCache,
     xgEvaluationOverviewCacheKey: _kXgEvaluationOverviewCache,
   );
 
@@ -126,6 +128,18 @@ class SessionStore extends AuthStore {
 
   Future<void> clearXgModuleSnapshot(String appName) async {
     await _xgCacheStore.clearXgModuleSnapshot(appName);
+  }
+
+  Future<void> saveXgActivityListCache(String json) async {
+    await _xgCacheStore.saveXgActivityListCache(json);
+  }
+
+  Future<String?> getXgActivityListCache() async {
+    return _xgCacheStore.getXgActivityListCache();
+  }
+
+  Future<void> clearXgActivityListCache() async {
+    await _xgCacheStore.clearXgActivityListCache();
   }
 
   Future<void> saveXgEvaluationOverviewCache(String json) async {
@@ -406,6 +420,7 @@ class SessionStore extends AuthStore {
     await prefs.remove(_kPortalAnnouncements);
     await removeKeysWithPrefix(prefs, _kTodayCoursesCache);
     await removeKeysWithPrefix(prefs, _kTodayCoursesCacheDate);
+    await removeKeysWithPrefix(prefs, _kXgActivityListCache);
     await removeKeysWithPrefix(prefs, _kXgEvaluationOverviewCache);
     await prefs.remove(_kXgTraceCurrentId);
     await prefs.remove(_kXgTraceStartedAt);

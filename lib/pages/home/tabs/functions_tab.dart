@@ -9,6 +9,7 @@ import '../../portal_announcements_list_page.dart';
 import '../../../features/campus_map/campus_map_page.dart';
 import '../../grade_page.dart';
 import '../../schedule_page.dart';
+import '../../xg_activity_page.dart';
 import '../../xg_evaluation_page.dart';
 
 /// 功能Tab - 展示所有功能模块的服务大厅
@@ -295,6 +296,11 @@ class _FunctionsTabState extends State<FunctionsTab>
         logDetails: '从服务大厅进入综合评测',
         pageBuilder: (context) => const XgEvaluationPage(),
       ),
+      FunctionCenterEntryIds.activityApply: _buildSimpleEntryAction(
+        entryId: FunctionCenterEntryIds.activityApply,
+        logDetails: '从服务大厅进入报名活动',
+        pageBuilder: (context) => const XgActivityPage(),
+      ),
       FunctionCenterEntryIds.campusMap: _buildSimpleEntryAction(
         entryId: FunctionCenterEntryIds.campusMap,
         logDetails: '从服务大厅进入校园地图',
@@ -425,7 +431,7 @@ class _FunctionsTabState extends State<FunctionsTab>
               ),
               decoration: InputDecoration(
                 isDense: true,
-                hintText: '搜索课表、成绩、公告、地图...',
+                hintText: '搜索课表、成绩、活动、地图...',
                 hintStyle: const TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w500,

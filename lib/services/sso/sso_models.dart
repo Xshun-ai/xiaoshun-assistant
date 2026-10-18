@@ -48,6 +48,7 @@ class XgModule {
 
   const XgModule(this.appName, this.appId);
 
+  static const XgModule activity = XgModule('xshdapp', '4805589443814173');
   static const XgModule evaluation = XgModule(
     'zhcptybbapp',
     '5275772372599202',

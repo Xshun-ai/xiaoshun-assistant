@@ -51,6 +51,7 @@ class FunctionCenterEntryIds {
   static const courseTable = 'course_table_entry';
   static const gradeQuery = 'grade_query_entry';
   static const evaluationQuery = 'evaluation_query_entry';
+  static const activityApply = 'activity_apply_entry';
 }
 
 class FunctionCenterCatalog {
@@ -119,6 +120,15 @@ class FunctionCenterCatalog {
       icon: Icons.assessment_rounded,
       color: Color(0xFF10B981),
       sort: 10,
+    ),
+    FunctionCenterEntryDefinition(
+      id: FunctionCenterEntryIds.activityApply,
+      sectionId: FunctionCenterSectionIds.life,
+      title: '报名活动',
+      subtitle: '活动报名与报名记录',
+      icon: Icons.local_activity_rounded,
+      color: Color(0xFFF59E0B),
+      sort: 20,
     ),
     FunctionCenterEntryDefinition(
       id: FunctionCenterEntryIds.campusMap,
