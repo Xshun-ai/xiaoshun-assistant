@@ -1,0 +1,14 @@
+{
+  "categories": [
+    {"id": 1, "name": "教学楼", "icon": "school"},
+    {"id": 7, "name": "实训楼", "icon": "build"},
+    {"id": 9, "name": "报告厅", "icon": "mic"},
+    {"id": 6, "name": "礼堂/体育馆", "icon": "stadium"},
+    {"id": 2, "name": "运动场", "icon": "fitness_center"},
+    {"id": 3, "name": "食堂", "icon": "restaurant"},
+    {"id": 4, "name": "宿舍", "icon": "hotel"},
+    {"id": 5, "name": "校门", "icon": "door_front"},
+    {"id": 8, "name": "其他", "icon": "place"}
+  ],
+  "markers": []
+}

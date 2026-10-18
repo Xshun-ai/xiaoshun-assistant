@@ -1,0 +1,7 @@
+flutter_launcher_icons:
+  android: "ic_launcher"
+  image_path: "assets/images/icon_android.png" # Android 使用裁掉大留白后的专用图标
+  adaptive_icon_foreground: "assets/images/icon_android.png"
+  adaptive_icon_foreground_inset: 18
+  adaptive_icon_background: "#FFFFFF"
+  min_sdk_android: 21 # android min sdk min:16, default 21
